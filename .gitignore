@@ -2,12 +2,15 @@ node_modules/
 .next/
 out/
 build/
+next-env.d.ts
+*.tsbuildinfo
+
 .env
 .env.local
 .env*.local
+
 .vercel
+.supabase/
 .DS_Store
-*.pem
 npm-debug.log*
 yarn-error.log*
-.supabase/
