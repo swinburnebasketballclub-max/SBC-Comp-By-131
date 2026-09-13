@@ -69,6 +69,92 @@ export const dict = {
   // --- legal ------------------------------------------------------------
   privacy:          { en: 'Privacy',             zh: '隐私权' },
   terms:            { en: 'Terms',               zh: '条款' },
+
+  // --- admin nav --------------------------------------------------------
+  navOverview:      { en: 'Overview',            zh: '比赛总览' },
+  navTeams:         { en: 'Teams & managers',    zh: '球队与经理账号' },
+  navPayments:      { en: 'Payments',            zh: '付款审核' },
+  navColours:       { en: 'Jersey colours',      zh: '球衣颜色' },
+  navPlayers:       { en: 'Players',             zh: '球员总表' },
+  navVeterans:      { en: 'Past players',        zh: '历史球员' },
+  navSchedule:      { en: 'Schedule',            zh: '赛程与赛制' },
+  navRules:         { en: 'Rules & terms',       zh: '规则与条款' },
+
+  // --- overview ---------------------------------------------------------
+  ovRegistered:     { en: 'Registered',          zh: '球队' },
+  ovCompliant:      { en: 'Rosters valid',       zh: '名单合规' },
+  ovAwaitingPay:    { en: 'Payments to review',  zh: '待审付款' },
+  ovColoursSet:     { en: 'Colours confirmed',   zh: '颜色已确认' },
+  ovLocked:         { en: 'Rosters locked',      zh: '已锁定' },
+  ovDaysLeft:       { en: 'Days to deadline',    zh: '距离截止' },
+  ovClosed:         { en: 'closed',              zh: '已截止' },
+  teamStatus:       { en: 'Team status',         zh: '球队状态' },
+  colManager:       { en: 'Manager',             zh: '经理' },
+  colPlayers:       { en: 'Players',             zh: '球员' },
+  colMasiswa:       { en: 'Masiswa',             zh: 'Masiswa' },
+  colRules:         { en: 'Rules',               zh: '规则' },
+  colFee:           { en: 'Fee',                 zh: '应缴' },
+  colPayment:       { en: 'Payment',             zh: '付款' },
+  colColour:        { en: 'Colour',              zh: '球衣颜色' },
+  colLocked:        { en: 'Locked',              zh: '锁定' },
+  rulesPass:        { en: 'OK',                  zh: '通过' },
+  rulesFail:        { en: 'breach',              zh: '不符' },
+  noTeamsYet:       { en: 'No teams yet. Register one below.', zh: '还没有球队。到下面建立第一支。' },
+
+  // --- statuses ---------------------------------------------------------
+  payNone:          { en: 'Not submitted',       zh: '未提交' },
+  payPending:       { en: 'Awaiting review',     zh: '待审核' },
+  payApproved:      { en: 'Approved',            zh: '已批准' },
+  payRejected:      { en: 'Returned',            zh: '已退回' },
+  colPending:       { en: 'Awaiting review',     zh: '待审核' },
+  colApproved:      { en: 'Confirmed',           zh: '已确认' },
+  colRejected:      { en: 'Returned',            zh: '已退回' },
+  colNotSet:        { en: 'Not chosen',          zh: '未选' },
+  colLockedOut:     { en: 'Locked until paid',   zh: '未解锁' },
+  mgrInvited:       { en: 'Invite pending',      zh: '邀请待接受' },
+  mgrActive:        { en: 'Active',              zh: '已启用' },
+  mgrDisabled:      { en: 'Disabled',            zh: '已停用' },
+  lockedYes:        { en: 'Locked',              zh: '已锁定' },
+  lockedNo:         { en: 'Editable',            zh: '可编辑' },
+
+  // --- teams & managers -------------------------------------------------
+  newTeam:          { en: 'Register a team',     zh: '建立新球队' },
+  newTeamLede: {
+    en: 'Managers cannot sign themselves up. You register the team and the Google account that will run it; that account gets access the moment it signs in.',
+    zh: '经理不能自助注册。由你建立球队并指定管理它的 Google 帐号 —— 对方一登入就自动拿到权限。',
+  },
+  fieldTeamName:    { en: 'Team name',           zh: '球队名称' },
+  fieldManagerName: { en: 'Manager name',        zh: '经理姓名' },
+  fieldManagerMail: { en: 'Manager Google account', zh: '经理 Google 帐号' },
+  fieldCaptainWA:   { en: 'Captain WhatsApp',    zh: '队长 WhatsApp' },
+  createTeam:       { en: 'Register team',       zh: '建立球队' },
+  managerAccounts:  { en: 'Manager accounts',    zh: '经理账号' },
+  actChangeMgr:     { en: 'Change manager',      zh: '更换经理' },
+  actDisable:       { en: 'Disable',             zh: '停用' },
+  actEnable:        { en: 'Re-enable',           zh: '恢复' },
+  actLock:          { en: 'Lock roster',         zh: '锁定名单' },
+  actUnlock:        { en: 'Open for 48h',        zh: '开放 48 小时' },
+  teamsFull:        { en: 'The competition is full.', zh: '球队已额满。' },
+  copyLink:         { en: 'Copy sign-in link',   zh: '复制登入链接' },
+  copied:           { en: 'Copied',              zh: '已复制' },
+
+  // --- admin accounts ---------------------------------------------------
+  adminAccounts:    { en: 'Organiser accounts',  zh: 'Admin 账号' },
+  adminAccountsLede: {
+    en: 'Super organisers can do everything. Finance only sees payments; Fixtures only sees the schedule.',
+    zh: '超级管理员什么都能做。财务只看得到付款，赛务只看得到赛程。',
+  },
+  inviteAdmin:      { en: 'Invite organiser',    zh: '邀请 Admin' },
+  roleSuper:        { en: 'Super',               zh: '超级管理员' },
+  roleFinance:      { en: 'Finance',             zh: '财务' },
+  roleFixtures:     { en: 'Fixtures',            zh: '赛务' },
+  pendingInvite:    { en: 'Has not signed in yet', zh: '尚未登入' },
+
+  // --- generic ----------------------------------------------------------
+  save:             { en: 'Save',                zh: '储存' },
+  cancel:           { en: 'Cancel',              zh: '取消' },
+  working:          { en: 'Working…',            zh: '处理中…' },
+  required:         { en: 'required',            zh: '必填' },
 } satisfies Record<string, Entry>
 
 export type Key = keyof typeof dict
