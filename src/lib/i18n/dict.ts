@@ -188,6 +188,208 @@ export const dict = {
   },
   close:            { en: 'Close',               zh: '关闭' },
 
+  // --- manager: nav & shell ---------------------------------------------
+  mNavRoster:       { en: 'Roster',              zh: '球队名单' },
+  mNavFee:          { en: 'Entry fee',           zh: '报名费' },
+  mNavColour:       { en: 'Jersey colour',       zh: '球衣颜色' },
+  mNavExport:       { en: 'Export',              zh: '导出' },
+  mReplayTour:      { en: 'Replay the tour',     zh: '重播使用教学' },
+  mLockedBanner:    { en: 'This roster is locked by the organiser. You can view it but not change it.', zh: '名单已被主办锁定，只能查看，不能修改。' },
+  mWindowBanner:    { en: 'The organiser has opened this roster for changes until', zh: '主办已开放修改，截止于' },
+
+  // --- manager: setup ---------------------------------------------------
+  setupTitle:       { en: 'Set up your team',    zh: '设定你的球队' },
+  setupLede: {
+    en: 'The organiser registered this team for you. Check the details, add your crest, and accept the competition terms — then you can start building the roster.',
+    zh: '主办已经帮你建立了这支球队。确认资料、上传队徽、同意比赛条款，就可以开始填名单了。',
+  },
+  teamLogo:         { en: 'Team crest',          zh: '球队 Logo' },
+  logoHint:         { en: 'Square PNG or JPG, at least 500 × 500. Used on the schedule and the public fixtures page.', zh: 'PNG 或 JPG，建议正方形、至少 500×500。会用在赛程与公开页面。' },
+  chooseFile:       { en: 'Choose file',         zh: '选择档案' },
+  replaceFile:      { en: 'Replace',             zh: '更换' },
+  agreeTerms: {
+    en: 'I have read and agree to the terms, and every player I register is an active Swinburne student.',
+    zh: '我已阅读并同意以上条款，并确认我登记的球员皆为在籍 Swinburne 学生。',
+  },
+  startRoster:      { en: 'Save and continue',   zh: '储存并继续' },
+  mustAgree:        { en: 'Tick the box to accept the terms.', zh: '请勾选同意条款。' },
+
+  // --- manager: tour ----------------------------------------------------
+  tour1Title:       { en: 'Welcome to SBC Hub',  zh: '欢迎使用 SBC Hub' },
+  tour1Body:        { en: 'This replaces the Google Form, the Word roster and chasing people on WhatsApp. Registration is four steps: build the roster, pay, choose a jersey colour, then the organiser locks it.', zh: '这个系统取代了 Google 表单、Word 名单和 WhatsApp 催资料。报名只有四步：填名单 → 缴费 → 选球衣颜色 → 主办锁定。' },
+  tour2Title:       { en: 'Stop collecting details by hand', zh: '不用再一个个去要资料' },
+  tour2Body:        { en: 'Create a player link and paste it into your team group. Players fill in their own details and photo on their phone — no sign-in. Their submission appears at the end of your roster, and counts once you confirm it.', zh: '生成球员链接贴进群组，球员在手机上自己填资料、上传照片，不用登入。提交后会出现在名单最后，你按「确认」才算数。' },
+  tour3Title:       { en: 'Duplicates are blocked for you', zh: '系统帮你挡掉重复' },
+  tour3Body:        { en: 'Jersey numbers and names are unique within your team, and an IC can only be registered once in the whole competition. A player sees the problem as they type.', zh: '球衣号码和名字在队内不能重复，IC 在整个比赛只能登记一次。球员填的当下就会看到。' },
+  tour4Title:       { en: 'Quotas and fees are worked out', zh: '名额和费用自动算' },
+  tour4Body:        { en: 'At most 3 Masiswa players, of whom at most 1 State. The roster shows where you stand, and the entry fee follows from it — you never need the fee table.', zh: '最多 3 名 Masiswa，其中最多 1 名 State。名单会即时显示，报名费也依此自动算出，不用自己对费用表。' },
+  tour5Title:       { en: 'Colours are first come, first served', zh: '球衣颜色先到先得' },
+  tour5Body:        { en: 'Once the organiser approves your payment, the jersey colour page opens. Pick a standard colour or mix your own; colours too close to one already taken are refused.', zh: '主办批准缴费后，球衣颜色页面才会开放。可以选常用色或自己调，太接近别队的颜色会被挡下。' },
+  tourNext:         { en: 'Next',                zh: '下一步' },
+  tourBack:         { en: 'Back',                zh: '上一步' },
+  tourSkip:         { en: 'Skip',                zh: '跳过' },
+  tourDone:         { en: 'Start',               zh: '开始使用' },
+
+  // --- manager: roster --------------------------------------------------
+  rosterLede: {
+    en: 'Laid out like the registration form and sorted manager, coach, captain, State, Masiswa, then everyone else. Submissions from player links wait at the end until you confirm them.',
+    zh: '照报名表的版面排列，依「经理 → 教练 → 队长 → State → Masiswa → 一般球员」排序。透过链接提交的球员会在最后面等你确认。',
+  },
+  rosterOk:         { en: 'Roster meets the competition rules', zh: '名单符合比赛规则' },
+  rosterBad:        { en: 'Roster breaks a rule', zh: '名单不符合规则' },
+  pendingWaiting:   { en: 'waiting for you to confirm', zh: '位球员等你确认' },
+  teamManager:      { en: 'Team manager',        zh: '球队经理' },
+  headCoach:        { en: 'Head coach',          zh: '主教练' },
+  playersHeading:   { en: 'Players',             zh: '球员' },
+  notAssigned:      { en: 'Not added',           zh: '未指定' },
+  coachOptional:    { en: 'Optional — at most one', zh: '可不填，最多一位' },
+  managerRequired:  { en: 'Required — add your own details', zh: '必填 —— 请填你自己的资料' },
+  alsoPlays:        { en: 'also plays',          zh: '兼球员' },
+  addMe:            { en: 'Add my details',      zh: '填入我的资料' },
+  addCoach:         { en: 'Add coach',           zh: '新增教练' },
+  addPlayer:        { en: 'Add a player',        zh: '手动新增球员' },
+  emptySlot:        { en: 'Open slot — send a player link', zh: '空位 —— 发链接给球员填' },
+  edit:             { en: 'Edit',                zh: '编辑' },
+  remove:           { en: 'Remove',              zh: '移除' },
+  confirmJoin:      { en: 'Confirm',             zh: '确认加入' },
+  declineJoin:      { en: 'Return',              zh: '退回' },
+  awaitingConfirm:  { en: 'Awaiting confirmation', zh: '待确认' },
+  checks:           { en: 'Rule check',          zh: '规则检查' },
+  limit:            { en: 'limit',               zh: '上限' },
+  feeSoFar:         { en: 'Entry fee',           zh: '应缴' },
+  goPay:            { en: 'Go to payment',       zh: '前往缴费' },
+  removeConfirm:    { en: 'Remove this person from the roster?', zh: '确定要把这个人从名单移除？' },
+
+  // --- member form ------------------------------------------------------
+  memberAdd:        { en: 'Add to roster',       zh: '加入名单' },
+  memberEdit:       { en: 'Edit details',        zh: '编辑资料' },
+  fFullName:        { en: 'Full name (as on IC)', zh: '姓名（同 IC）' },
+  fIC:              { en: 'IC number',           zh: 'IC 号码' },
+  fPhone:           { en: 'Phone (WhatsApp)',    zh: '电话（WhatsApp）' },
+  fStudentId:       { en: 'Student ID',          zh: '学生证号' },
+  fCourse:          { en: 'Course',              zh: '课程' },
+  fYear:            { en: 'Year',                zh: '年级' },
+  fJerseyNo:        { en: 'Jersey number',       zh: '球衣号码' },
+  fJerseyName:      { en: 'Name on jersey',      zh: '球衣名字' },
+  fSize:            { en: 'Jersey size',         zh: '球衣尺码' },
+  fTier:            { en: 'Level',               zh: '球员水平' },
+  tierNone:         { en: 'Regular player',      zh: '一般球员' },
+  tierMasiswa:      { en: 'Masiswa / equivalent (incl. SUKSAR, university or district rep)', zh: 'Masiswa／同等水平（含 SUKSAR、大学／县代表）' },
+  tierState:        { en: 'State / National player', zh: 'State／National 球员' },
+  fCaptain:         { en: 'Team captain',        zh: '队长' },
+  fPlays:           { en: 'Also plays (needs a jersey)', zh: '同时是球员（需要球衣）' },
+  fNewPlayer:       { en: 'First time playing an SBC 5x5 tournament', zh: '第一次参加 SBC 5x5 比赛' },
+  fNewPlayerHint:   { en: 'Checked against past rosters — a returning player is corrected automatically.', zh: '系统会比对历史名单，打过的会自动更正。' },
+  fPhoto:           { en: 'Passport photo',      zh: '护照照片' },
+  photoHint:        { en: 'Plain background, face forward, no cap.', zh: '白底、正面、不戴帽。' },
+  takenNo:          { en: 'is already taken on this team', zh: '号已经有队友用了' },
+  takenName:        { en: 'is already used on this team', zh: '已经有队友用了' },
+  numberOk:         { en: 'available',           zh: '可用' },
+  nameRule:         { en: '2–10 letters or digits', zh: '2–10 个英文字母或数字' },
+
+  // --- invite links -----------------------------------------------------
+  linksTitle:       { en: 'Player links',        zh: '球员填表链接' },
+  linksLede: {
+    en: 'A team link can be used by anyone you send it to. A personal link works once, so "used 0 / 1" tells you who has not filled it in.',
+    zh: '全队链接谁拿到都能填。个人链接只能用一次 —— 看「已用 0 / 1」就知道谁还没交。',
+  },
+  newTeamLink:      { en: 'New team link',       zh: '生成全队链接' },
+  newPersonalLink:  { en: 'New personal link',   zh: '生成个人链接' },
+  personalFor:      { en: 'Who is this for?',    zh: '这条链接给谁？' },
+  linkTeam:         { en: 'Team link',           zh: '全队共用' },
+  linkPersonal:     { en: 'Personal',            zh: '个人' },
+  linkUsed:         { en: 'used',                zh: '已用' },
+  linkRevoked:      { en: 'Cancelled',           zh: '已撤销' },
+  linkSpent:        { en: 'Used',                zh: '已使用' },
+  linkOpen:         { en: 'Open',                zh: '开放中' },
+  linkWaiting:      { en: 'Not filled yet',      zh: '还没填' },
+  copyUrl:          { en: 'Copy link',           zh: '复制链接' },
+  copyMessage:      { en: 'Copy WhatsApp message', zh: '复制邀请讯息' },
+  revoke:           { en: 'Cancel link',         zh: '撤销' },
+  noLinks:          { en: 'No links yet. Create one and paste it into your team group.', zh: '还没有链接。生成一条贴进球队群组。' },
+  inviteMsg: {
+    en: '[{team}] SBC {season} registration\nFill in your details here — no sign-in, works on your phone:\n{url}\n\nHave ready: IC number, phone, student ID, course and year, jersey number / name / size, and a passport photo.\nYou are registered once I confirm. Closes {deadline}.',
+    zh: '【{team}】SBC {season} 报名\n请点这个链接填你的资料（不用登入，手机就能填）：\n{url}\n\n要准备：IC 号码、电话、学生证号、课程与年级、球衣号码／名字／尺码，还有一张护照照片。\n我这边确认了才算报名成功。截止 {deadline}。',
+  },
+
+  // --- fee --------------------------------------------------------------
+  feeLede:          { en: 'Worked out from your roster. Transfer the amount, then upload the receipt for the organiser to check.', zh: '依你的名单自动算出。转帐后上传收据，主办核对后批准。' },
+  feeTierLine:      { en: 'Tier',                zh: '级距' },
+  feeChangesNote:   { en: 'If the roster changes before you submit — say, one more Masiswa player — this amount updates by itself.', zh: '送出之前名单有变动（例如多一个 Masiswa），金额会自动更新。' },
+  payTo:            { en: 'Pay to',              zh: '转帐资料' },
+  bankName:         { en: 'Bank',                zh: '银行' },
+  bankHolder:       { en: 'Account holder',      zh: '户名' },
+  bankAccount:      { en: 'Account number',      zh: '帐号' },
+  scanQR:           { en: 'Scan with your banking app, or transfer to the account number.', zh: '用银行 App 扫 QR，或手动转到帐号。' },
+  transferNote:     { en: 'Put your team name in the transfer reference.', zh: '转帐备注请写球队名称。' },
+  uploadReceipt:    { en: 'Upload receipt',      zh: '上传收据' },
+  refundHint:       { en: 'Your own account. The RM 100 deposit is refunded here after the competition if there are no fines.', zh: '请填你本人的户口。比赛结束后若无罚款，RM100 押金会退到这里。' },
+  submitPayment:    { en: 'Submit for review',   zh: '提交审核' },
+  payPendingNote:   { en: 'Submitted. The organiser will check it against the bank.', zh: '已提交，主办会对照银行入帐审核。' },
+  payApprovedNote:  { en: 'Approved. Jersey colour selection is open.', zh: '已批准，可以去选球衣颜色了。' },
+  payRejectedNote:  { en: 'Returned by the organiser:', zh: '主办退回，原因：' },
+  noPaymentYet:     { en: 'Add at least one person to the roster and the fee will appear here.', zh: '名单至少加一个人，这里就会显示应缴金额。' },
+
+  // --- colour -----------------------------------------------------------
+  colourLede:       { en: 'One primary colour per team, unique across the competition, first come first served. The organiser confirms each choice.', zh: '每队一个主色，全赛事不可重复，先到先得。主办会逐一确认。' },
+  colourLocked:     { en: 'Colour selection opens once the organiser approves your entry fee.', zh: '报名费经主办批准后，才能选球衣颜色。' },
+  takenColours:     { en: 'Already claimed',     zh: '已被选走的颜色' },
+  noTakenYet:       { en: 'No team has claimed a colour yet.', zh: '还没有球队选颜色。' },
+  standardColours:  { en: 'Standard colours',    zh: '常用颜色' },
+  mixColour:        { en: 'Mix your own',        zh: '自己调颜色' },
+  colourName:       { en: 'Colour name',         zh: '颜色名称' },
+  tooClose:         { en: 'Too close to a colour already claimed', zh: '跟已被选走的颜色太接近' },
+  colourFine:       { en: 'Distinct from every claimed colour', zh: '跟已被选走的颜色都有明显差异' },
+  claimColour:      { en: 'Claim this colour',   zh: '选这个颜色' },
+  yourColour:       { en: 'Your colour',         zh: '你的颜色' },
+  submitDesign:     { en: 'Jersey design',       zh: '提交衣服设计' },
+  designHint:       { en: 'Optional. Lets the organiser see the kit before it goes to the supplier.', zh: '可选。交给厂商前先给主办过目。' },
+  designNote:       { en: 'Notes for the organiser', zh: '给主办的备注' },
+  saveDesign:       { en: 'Save design',         zh: '储存设计' },
+
+  // --- export -----------------------------------------------------------
+  exportLede:       { en: 'The jersey supplier needs number, name and size — nothing else leaves the club.', zh: '球衣厂商只需要号码、名字、尺码 —— 其他资料不会外流。' },
+  copyList:         { en: 'Copy list',           zh: '复制清单' },
+  sizeTally:        { en: 'Sizes',               zh: '尺码统计' },
+  total:            { en: 'Total',               zh: '总计' },
+  nothingToExport:  { en: 'No confirmed players with a jersey yet.', zh: '还没有已确认、有球衣的球员。' },
+
+  // --- player join form -------------------------------------------------
+  sectAbout:        { en: 'About you',           zh: '个人资料' },
+  sectJersey:       { en: 'Jersey',              zh: '球衣' },
+  joinTitle:        { en: 'Join {team}',         zh: '加入 {team}' },
+  joinLede:         { en: 'Your team manager confirms this before you are registered. Only they and the organiser can see your details.', zh: '球队经理确认后才算正式报名。你的资料只有经理与主办看得到。' },
+  joinAgree:        { en: 'My details are correct, I am an active Swinburne student, and I accept the competition terms.', zh: '我确认资料属实，我是在籍 Swinburne 学生，并同意比赛条款。' },
+  joinSubmit:       { en: 'Send to my team manager', zh: '提交给球队经理' },
+  joinDoneTitle:    { en: 'Sent',                zh: '已提交' },
+  joinDoneBody:     { en: 'Your details are with {team}\'s manager. You are registered once they confirm.', zh: '你的资料已送到 {team} 的经理。经理确认后就算报名成功。' },
+  joinQuota:        { en: 'This team already has {used} of {max} Masiswa-level players.', zh: '这支球队已有 {used}／{max} 名 Masiswa 等级球员。' },
+  quotaFull:        { en: 'The team has no Masiswa places left — speak to your manager.', zh: '这队的 Masiswa 名额已满，请先跟经理确认。' },
+  uploading:        { en: 'Uploading photo…',    zh: '上传照片中…' },
+  photoUnavailable: { en: 'Photo upload is not switched on yet — send it now anyway; your manager can add the photo later.', zh: '照片上传功能还没开启 —— 可以先提交，之后经理再补上照片。' },
+  photoFailed:      { en: 'The photo could not be uploaded. Try a smaller image.', zh: '照片上传失败，请换一张小一点的。' },
+
+  // --- database error codes --------------------------------------------
+  errJERSEY_NO_TAKEN:       { en: 'That jersey number is already taken on this team.', zh: '这个球衣号码已经有队友用了。' },
+  errJERSEY_NAME_TAKEN:     { en: 'That jersey name is already used on this team.', zh: '这个球衣名字已经有队友用了。' },
+  errIC_ALREADY_REGISTERED: { en: 'This IC is already registered in this competition — one person, one team.', zh: '这个 IC 已经在本届比赛登记过了 —— 一人只能报一队。' },
+  errIC_INVALID:            { en: 'Check the IC number.', zh: '请检查 IC 号码。' },
+  errMASISWA_QUOTA:         { en: 'That would put the team over its Masiswa limit.', zh: '这样会超出这队的 Masiswa 名额。' },
+  errSTATE_QUOTA:           { en: 'The team already has its one State player.', zh: '这队已经有一名 State 球员了。' },
+  errROSTER_FULL:           { en: 'The roster is full.', zh: '名单已满。' },
+  errCOACH_QUOTA:           { en: 'A team can have only one head coach.', zh: '每队只能有一位主教练。' },
+  errMANAGER_QUOTA:         { en: 'A team can have only one manager on the roster.', zh: '名单上只能有一位经理。' },
+  errROSTER_LOCKED:         { en: 'The roster is locked.', zh: '名单已锁定。' },
+  errLINK_INVALID:          { en: 'This link is no longer valid. Ask your manager for a new one.', zh: '这条链接已失效，请向经理要一条新的。' },
+  errPAYMENT_NOT_APPROVED:  { en: 'Colour selection opens once the entry fee is approved.', zh: '报名费批准后才能选颜色。' },
+  errCOLOUR_TOO_CLOSE:      { en: 'Too close to a colour another team has claimed.', zh: '跟别队已选的颜色太接近。' },
+  errCOLOUR_TAKEN:          { en: 'Someone claimed that colour a moment ago.', zh: '这个颜色刚刚被别队选走了。' },
+  errDUPLICATE:             { en: 'That duplicates someone already on the roster.', zh: '跟名单上的人重复了。' },
+  errFORBIDDEN:             { en: 'You do not have access to this team.', zh: '你没有这支球队的权限。' },
+  errINVALID:               { en: 'Some details are missing or not valid.', zh: '有资料没填或格式不对。' },
+  errUNKNOWN:               { en: 'Something went wrong. Try again.', zh: '出了点问题，请再试一次。' },
+  saved:                    { en: 'Saved',       zh: '已储存' },
+
   // --- generic ----------------------------------------------------------
   save:             { en: 'Save',                zh: '储存' },
   cancel:           { en: 'Cancel',              zh: '取消' },
@@ -208,4 +410,25 @@ export function pick<T extends Record<string, unknown>>(
   locale: Locale,
 ): string {
   return String(row[`${base}_${locale}`] ?? row[`${base}_en`] ?? '')
+}
+
+/** Every string for one locale, for handing to a client component. */
+export type Strings = Record<Key, string>
+
+export function strings(locale: Locale): Strings {
+  return Object.fromEntries(
+    (Object.keys(dict) as Key[]).map((k) => [k, dict[k][locale]]),
+  ) as Strings
+}
+
+/** `fill('Join {team}', { team: 'Thunder Cats' })` */
+export function fill(template: string, vars: Record<string, string | number>): string {
+  return template.replace(/\{(\w+)\}/g, (_, name) => String(vars[name] ?? `{${name}}`))
+}
+
+/** Maps a database or action error code to a sentence. */
+export function errorText(code: string | undefined, s: Strings): string {
+  if (!code) return s.errUNKNOWN
+  const key = `err${code}` as Key
+  return key in dict ? s[key] : s.errUNKNOWN
 }
