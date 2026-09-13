@@ -6,7 +6,7 @@ import { type Key } from '@/lib/i18n/dict'
 import { translator } from '@/lib/i18n/server'
 import { getViewer } from '@/lib/session'
 import { supabaseServer } from '@/lib/supabase/server'
-import { InviteAdminForm, NewTeamForm, TeamRowActions } from './TeamForms'
+import { AdminRowActions, InviteAdminForm, InviteRowActions, NewTeamForm, TeamRowActions } from './TeamForms'
 
 export const metadata = { title: 'Teams & managers' }
 export const dynamic = 'force-dynamic'
@@ -15,7 +15,7 @@ const LABEL_KEYS = [
   'fieldTeamName', 'fieldManagerName', 'fieldManagerMail', 'fieldCaptainWA',
   'createTeam', 'actChangeMgr', 'actDisable', 'actEnable', 'actLock', 'actUnlock',
   'teamsFull', 'inviteAdmin', 'roleSuper', 'roleFinance', 'roleFixtures',
-  'save', 'cancel', 'working', 'colRules',
+  'save', 'cancel', 'working', 'colRules', 'fGoogleAccount', 'fName', 'fRole', 'remove', 'cancelInvite', 'confirmRemoveAdmin',
 ] as const satisfies readonly Key[]
 
 export default async function TeamsPage() {
@@ -152,10 +152,9 @@ export default async function TeamsPage() {
           <table>
             <thead>
               <tr>
-                <th>{tr('colManager')}</th>
-                <th>{tr('fieldManagerMail')}</th>
-                <th>{tr('colRules')}</th>
-                <th>{tr('signedInAs')}</th>
+                <th>{tr('fName')}</th>
+                <th>{tr('fGoogleAccount')}</th>
+                <th>{tr('fRole')}</th>
               </tr>
             </thead>
             <tbody>
@@ -164,26 +163,35 @@ export default async function TeamsPage() {
                   <td>
                     <b>{a.full_name || '—'}</b>
                     {a.id === viewer.userId && <span className="tag t-pink" style={{ marginLeft: 8 }}>you</span>}
+                    <div className="sub">{stamp(a.created_at)}</div>
                   </td>
                   <td className="num sub">{a.email}</td>
-                  <td>
-                    <span className={`tag ${a.role === 'super' ? 't-pink' : 't-mute'}`}>
-                      {a.role === 'super' ? tr('roleSuper') : a.role === 'finance' ? tr('roleFinance') : tr('roleFixtures')}
-                    </span>
+                  <td className="right">
+                    <AdminRowActions
+                      adminId={a.id}
+                      role={a.role}
+                      isYou={a.id === viewer.userId}
+                      locale={tr.locale}
+                      labels={labels}
+                    />
                   </td>
-                  <td className="sub">{stamp(a.created_at)}</td>
                 </tr>
               ))}
               {(invites ?? []).map((i) => (
-                <tr key={i.email} style={{ opacity: 0.6 }}>
-                  <td><b>{i.full_name || '—'}</b></td>
-                  <td className="num sub">{i.email}</td>
+                <tr key={i.email}>
                   <td>
-                    <span className={`tag ${i.role === 'super' ? 't-pink' : 't-mute'}`}>
-                      {i.role === 'super' ? tr('roleSuper') : i.role === 'finance' ? tr('roleFinance') : tr('roleFixtures')}
-                    </span>
+                    <b style={{ opacity: 0.7 }}>{i.full_name || '—'}</b>
+                    <div><span className="tag t-warn">{tr('pendingInvite')}</span></div>
                   </td>
-                  <td><span className="tag t-warn">{tr('pendingInvite')}</span></td>
+                  <td className="num sub">{i.email}</td>
+                  <td className="right">
+                    <div className="row" style={{ gap: 8, justifyContent: 'flex-end' }}>
+                      <span className={`tag ${i.role === 'super' ? 't-pink' : 't-mute'}`}>
+                        {i.role === 'super' ? tr('roleSuper') : i.role === 'finance' ? tr('roleFinance') : tr('roleFixtures')}
+                      </span>
+                      <InviteRowActions email={i.email} locale={tr.locale} labels={labels} />
+                    </div>
+                  </td>
                 </tr>
               ))}
             </tbody>

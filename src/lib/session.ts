@@ -14,7 +14,7 @@ export type Viewer =
  * a Google session but nobody has given them a role yet — which is exactly
  * what a stranger who finds the site will see.
  */
-export async function getViewer(): Promise<Viewer> {
+export async function getViewer(retried = false): Promise<Viewer> {
   const supabase = await supabaseServer()
   const { data: { user } } = await supabase.auth.getUser()
   if (!user?.email) return { kind: 'anon' }
@@ -40,6 +40,14 @@ export async function getViewer(): Promise<Viewer> {
     .eq('manager_status', 'active')
 
   if (teams && teams.length > 0) return { kind: 'manager', ...base, teams }
+
+  // No role yet. An invite or a team may have been set up after this account
+  // first signed in; claim it once, then look again.
+  if (!retried) {
+    const { data: claimed } = await supabase.rpc('claim_pending_access')
+    const c = claimed as { admin?: boolean; teams?: number } | null
+    if (c?.admin || (c?.teams ?? 0) > 0) return getViewer(true)
+  }
 
   return { kind: 'unknown', ...base }
 }

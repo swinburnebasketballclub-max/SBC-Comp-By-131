@@ -148,6 +148,11 @@ export const dict = {
   roleSuper:        { en: 'Super',               zh: '超级管理员' },
   roleFinance:      { en: 'Finance',             zh: '财务' },
   roleFixtures:     { en: 'Fixtures',            zh: '赛务' },
+  fGoogleAccount:   { en: 'Google account',      zh: 'Google 帐号' },
+  fName:            { en: 'Name',                zh: '姓名' },
+  fRole:            { en: 'Role',                zh: '权限' },
+  cancelInvite:     { en: 'Cancel invite',       zh: '取消邀请' },
+  confirmRemoveAdmin: { en: 'Remove this organiser? They lose access immediately.', zh: '确定移除这位 Admin？对方会立刻失去权限。' },
   pendingInvite:    { en: 'Has not signed in yet', zh: '尚未登入' },
 
   // --- review drawers ---------------------------------------------------

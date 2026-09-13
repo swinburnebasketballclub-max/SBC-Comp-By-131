@@ -2,7 +2,9 @@
 
 import { useActionState, useState, useTransition } from 'react'
 
-import { changeManager, createTeam, inviteAdmin, setLock, setManagerStatus, type Result } from './actions'
+import {
+  cancelInvite, changeManager, createTeam, inviteAdmin, removeAdmin, setAdminRole, setLock, setManagerStatus, type Result,
+} from './actions'
 
 /** Error codes the server actions return, in both languages. */
 const MESSAGES: Record<string, { en: string; zh: string }> = {
@@ -17,8 +19,14 @@ const MESSAGES: Record<string, { en: string; zh: string }> = {
   MANAGER_ENABLED:          { en: 'Manager re-enabled.', zh: '经理帐号已恢复。' },
   ROSTER_LOCKED:            { en: 'Roster locked.', zh: '名单已锁定。' },
   EDIT_WINDOW_OPEN:         { en: 'Open for 48 hours, then it locks itself again.', zh: '开放 48 小时，之后自动锁回去。' },
-  ADMIN_INVITED:            { en: 'Invited. They become an organiser the first time they sign in.', zh: '已邀请。对方第一次登入就成为 Admin。' },
+  ADMIN_INVITED:            { en: 'Invited. They become an organiser the next time they sign in — even if they have signed in before.', zh: '已邀请。对方下次登入就成为 Admin（以前登入过也没问题）。' },
   FORBIDDEN:                { en: 'Only a super organiser can do that.', zh: '只有超级管理员能做这件事。' },
+  ADMIN_ROLE_CHANGED:       { en: 'Role changed.', zh: '权限已更改。' },
+  ADMIN_REMOVED:            { en: 'Organiser removed. They lose access on their next page load.', zh: '已移除。对方下次载入页面就会失去权限。' },
+  INVITE_CANCELLED:         { en: 'Invite cancelled.', zh: '邀请已取消。' },
+  ALREADY_ADMIN:            { en: 'That account is already an organiser — change its role in the table instead.', zh: '这个帐号已经是 Admin 了，请直接在表格里改权限。' },
+  LAST_SUPER:               { en: 'There must always be at least one super organiser.', zh: '至少要保留一位超级管理员。' },
+  CANNOT_REMOVE_SELF:       { en: 'You cannot remove yourself. Ask another super organiser.', zh: '不能移除自己，请另一位超级管理员操作。' },
 }
 
 function say(code: string, locale: 'en' | 'zh') {
@@ -139,15 +147,15 @@ export function InviteAdminForm({ locale, labels }: L) {
     <form action={action} className="stack" style={{ gap: 13 }}>
       <div className="form-grid">
         <label className="field">
-          <span>{labels.fieldManagerMail} <span className="req">*</span></span>
+          <span>{labels.fGoogleAccount} <span className="req">*</span></span>
           <input className="inp" name="email" type="email" required placeholder="officer@gmail.com" />
         </label>
         <label className="field">
-          <span>{labels.fieldManagerName}</span>
+          <span>{labels.fName}</span>
           <input className="inp" name="full_name" placeholder="Full name" />
         </label>
         <label className="field">
-          <span>{labels.colRules}</span>
+          <span>{labels.fRole}</span>
           <select className="inp" name="role" defaultValue="finance">
             <option value="super">{labels.roleSuper}</option>
             <option value="finance">{labels.roleFinance}</option>
@@ -162,5 +170,60 @@ export function InviteAdminForm({ locale, labels }: L) {
         </button>
       </div>
     </form>
+  )
+}
+
+// ------------------------------------------------------- organiser rows --
+type Role = 'super' | 'finance' | 'fixtures'
+
+export function AdminRowActions({
+  adminId, role, isYou, locale, labels,
+}: L & { adminId: string; role: Role; isYou: boolean }) {
+  const [busy, start] = useTransition()
+  const [msg, setMsg] = useState<Result | null>(null)
+
+  return (
+    <div className="stack" style={{ gap: 6, alignItems: 'flex-end' }}>
+      <div className="row" style={{ gap: 6, justifyContent: 'flex-end' }}>
+        <select
+          className="inp"
+          style={{ width: 'auto', padding: '4px 8px', fontSize: 12.5 }}
+          value={role}
+          disabled={busy}
+          onChange={(e) => start(async () => setMsg(await setAdminRole(adminId, e.target.value as Role)))}
+        >
+          <option value="super">{labels.roleSuper}</option>
+          <option value="finance">{labels.roleFinance}</option>
+          <option value="fixtures">{labels.roleFixtures}</option>
+        </select>
+        {!isYou && (
+          <button
+            className="btn btn-sm"
+            disabled={busy}
+            onClick={() => {
+              if (confirm(labels.confirmRemoveAdmin)) start(async () => setMsg(await removeAdmin(adminId)))
+            }}
+          >
+            {labels.remove}
+          </button>
+        )}
+      </div>
+      {msg && (
+        <span className={`tag ${msg.ok ? 't-ok' : 't-crit'}`}>{say(msg.ok ? msg.message : msg.error, locale)}</span>
+      )}
+    </div>
+  )
+}
+
+export function InviteRowActions({ email, locale, labels }: L & { email: string }) {
+  const [busy, start] = useTransition()
+  const [msg, setMsg] = useState<Result | null>(null)
+  return (
+    <div className="stack" style={{ gap: 6, alignItems: 'flex-end' }}>
+      <button className="btn btn-sm" disabled={busy} onClick={() => start(async () => setMsg(await cancelInvite(email)))}>
+        {labels.cancelInvite}
+      </button>
+      {msg && !msg.ok && <span className="tag t-crit">{say(msg.error, locale)}</span>}
+    </div>
   )
 }

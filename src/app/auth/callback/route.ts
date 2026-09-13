@@ -24,6 +24,10 @@ export async function GET(request: NextRequest) {
     )
   }
 
+  // Pick up any organiser invite or team registered to this email, including
+  // ones created after the account first signed in.
+  await supabase.rpc('claim_pending_access')
+
   // Only follow `next` when it is a path on this site.
   if (next && next.startsWith('/') && !next.startsWith('//')) {
     return NextResponse.redirect(new URL(next, url.origin))

@@ -155,11 +155,50 @@ export async function inviteAdmin(_prev: Result | null, form: FormData): Promise
   if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) return { ok: false, error: 'EMAIL_INVALID' }
   if (!['super', 'finance', 'fixtures'].includes(role)) return { ok: false, error: 'ROLE_INVALID' }
 
+  const { data: existing } = await supabase.from('admins').select('id').eq('email', email).maybeSingle()
+  if (existing) return { ok: false, error: 'ALREADY_ADMIN' }
+
   const { error } = await supabase
     .from('admin_invites')
-    .upsert({ email, full_name: name, role }, { onConflict: 'email' })
+    .upsert({ email, full_name: name, role, claimed_at: null }, { onConflict: 'email' })
 
   if (error) return { ok: false, error: error.message }
   revalidatePath('/admin/teams')
   return { ok: true, message: 'ADMIN_INVITED' }
+}
+
+// ------------------------------------------------------ organiser accounts --
+function adminError(message: string): Result {
+  if (message.includes('LAST_SUPER')) return { ok: false, error: 'LAST_SUPER' }
+  return { ok: false, error: message }
+}
+
+export async function setAdminRole(adminId: string, role: AdminRole): Promise<Result> {
+  await requireSuper()
+  if (!['super', 'finance', 'fixtures'].includes(role)) return { ok: false, error: 'ROLE_INVALID' }
+  const supabase = await supabaseServer()
+  const { error } = await supabase.from('admins').update({ role }).eq('id', adminId)
+  if (error) return adminError(error.message)
+  revalidatePath('/admin', 'layout')
+  return { ok: true, message: 'ADMIN_ROLE_CHANGED' }
+}
+
+export async function removeAdmin(adminId: string): Promise<Result> {
+  const viewer = await requireSuper()
+  // Removing yourself by accident locks you out mid-competition.
+  if (adminId === viewer.userId) return { ok: false, error: 'CANNOT_REMOVE_SELF' }
+  const supabase = await supabaseServer()
+  const { error } = await supabase.from('admins').delete().eq('id', adminId)
+  if (error) return adminError(error.message)
+  revalidatePath('/admin', 'layout')
+  return { ok: true, message: 'ADMIN_REMOVED' }
+}
+
+export async function cancelInvite(email: string): Promise<Result> {
+  await requireSuper()
+  const supabase = await supabaseServer()
+  const { error } = await supabase.from('admin_invites').delete().eq('email', email).is('claimed_at', null)
+  if (error) return { ok: false, error: error.message }
+  revalidatePath('/admin/teams')
+  return { ok: true, message: 'INVITE_CANCELLED' }
 }
