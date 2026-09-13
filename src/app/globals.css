@@ -391,3 +391,80 @@ tbody tr:hover { background: rgba(255, 255, 255, 0.018); }
 }
 
 .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 13px; }
+
+/* ------------------------------------------------------- review drawers -- */
+.cell-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--r);
+  padding: 3px 6px;
+  margin: -4px -7px;
+  text-align: left;
+}
+.cell-btn:hover { border-color: var(--pink-dim); background: var(--pink-wash); }
+.cell-arrow { color: var(--text-3); font-size: 15px; line-height: 1; }
+.cell-btn:hover .cell-arrow { color: var(--pink); }
+
+.scrim { position: fixed; inset: 0; background: rgba(0, 0, 0, 0.62); z-index: 40; }
+.drawer {
+  position: fixed;
+  top: 0;
+  right: 0;
+  height: 100dvh;
+  width: min(520px, 100vw);
+  background: var(--ink);
+  border-left: 1px solid var(--line);
+  z-index: 41;
+  overflow-y: auto;
+  box-shadow: -24px 0 60px rgba(0, 0, 0, 0.55);
+}
+.drawer-h {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 18px;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+.drawer-b { padding: 18px; }
+
+.kv {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 7px 0;
+  border-bottom: 1px dashed var(--line-soft);
+  font-size: 13.5px;
+}
+.kv:last-child { border-bottom: 0; }
+.kv .k { color: var(--text-3); }
+.kv .v { text-align: right; overflow-wrap: anywhere; }
+.kv.total { border-top: 1px solid var(--line); border-bottom: 0; margin-top: 4px; padding-top: 10px; }
+.kv.total .k { color: var(--text); font-family: var(--display); font-weight: 700; font-size: 15px; }
+.kv.total .v { font-family: var(--display); font-weight: 800; font-size: 20px; color: var(--pink); }
+
+.receipt { display: flex; flex-direction: column; gap: 8px; align-items: flex-start; text-decoration: none; }
+.receipt img {
+  width: 100%;
+  max-height: 340px;
+  object-fit: contain;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: var(--r);
+}
+
+.colour-hero { display: flex; align-items: center; gap: 16px; }
+.colour-big {
+  width: 64px;
+  height: 64px;
+  border-radius: 10px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  flex: none;
+}

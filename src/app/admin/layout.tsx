@@ -23,15 +23,12 @@ export default async function AdminLayout({ children }: { children: React.ReactN
   if (role === 'super') {
     push('/admin', tr('navOverview'))
     push('/admin/teams', tr('navTeams'))
-    push('/admin/payments', tr('navPayments'))
-    push('/admin/colours', tr('navColours'))
     push('/admin/players', tr('navPlayers'))
     push('/admin/veterans', tr('navVeterans'))
     push('/admin/schedule', tr('navSchedule'))
     push('/admin/rules', tr('navRules'))
   } else if (role === 'finance') {
     push('/admin', tr('navOverview'))
-    push('/admin/payments', tr('navPayments'))
   } else {
     push('/admin', tr('navOverview'))
     push('/admin/schedule', tr('navSchedule'))
