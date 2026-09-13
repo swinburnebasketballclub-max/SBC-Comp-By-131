@@ -39,6 +39,10 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
+  // The Supabase client libraries are not reliably edge-compatible: on Vercel
+  // the edge build loaded fine and then failed on every invocation before any
+  // of this code ran. The Node.js runtime has no such gaps.
+  runtime: 'nodejs',
   matcher: [
     '/((?!_next/static|_next/image|favicon.ico|logo.jpg|ryt-qr.jpg|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)',
   ],
