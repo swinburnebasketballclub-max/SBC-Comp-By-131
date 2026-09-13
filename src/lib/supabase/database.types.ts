@@ -533,6 +533,8 @@ export type Database = {
     Views: { [_ in never]: never }
     Functions: {
       claim_pending_access: { Args: Record<PropertyKey, never>; Returns: Json }
+      upsert_veterans: { Args: { p_rows: Json }; Returns: { added: number; updated: number }[] }
+      archive_season: { Args: { p_competition: string }; Returns: { added: number; updated: number }[] }
       get_fixtures: { Args: { p_slug: string }; Returns: FixtureRow[] }
       invite_context: { Args: { p_token: string }; Returns: Json }
       submit_player: { Args: { p_token: string; p: Json }; Returns: Json }

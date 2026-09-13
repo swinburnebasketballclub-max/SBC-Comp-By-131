@@ -622,3 +622,26 @@ tbody tr:hover { background: rgba(255, 255, 255, 0.018); }
 .join .sect { font-family: var(--display); font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; color: var(--text-3); padding-top: 6px; border-top: 1px solid var(--line-soft); }
 .join-hero { display: flex; gap: 14px; align-items: center; padding-bottom: 14px; border-bottom: 1px solid var(--line); }
 .join-hero img, .join-hero .sheet-logo { width: 52px; height: 52px; }
+
+/* ------------------------------------------------------- admin registry -- */
+.team-toggle {
+  width: 100%; background: transparent; border: 0; color: inherit; font: inherit;
+  text-align: left; cursor: pointer; flex-wrap: wrap; gap: 10px;
+}
+.team-toggle[aria-expanded='false'] { border-bottom-color: transparent; }
+.team-toggle:hover .cell-arrow { color: var(--pink); }
+.team-toggle:focus-visible { outline: 2px solid var(--pink); outline-offset: -2px; }
+textarea.inp { font-family: var(--mono); font-size: 12.5px; line-height: 1.6; resize: vertical; }
+.split { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 18px; align-items: start; }
+@media (max-width: 900px) { .split { grid-template-columns: 1fr; } }
+.clause { display: grid; grid-template-columns: 34px minmax(0, 1fr) minmax(0, 1fr) auto; gap: 10px; align-items: start; padding: 12px 16px; border-top: 1px solid var(--line-soft); }
+.clause:first-child { border-top: 0; }
+.clause-no { font-family: var(--display); font-size: 20px; font-weight: 800; color: var(--steel); line-height: 1.6; }
+@media (max-width: 760px) { .clause { grid-template-columns: 28px minmax(0, 1fr); } .clause > :nth-child(3), .clause > :nth-child(4) { grid-column: 2; } }
+.save-bar {
+  position: sticky; bottom: 0; z-index: 5; display: flex; gap: 12px; align-items: center; justify-content: flex-end;
+  flex-wrap: wrap; padding: 12px 16px; background: var(--ink); border: 1px solid var(--line); border-radius: var(--r);
+}
+
+.team-link { color: inherit; text-decoration: none; border-bottom: 1px dashed var(--line); }
+.team-link:hover { color: var(--pink); border-bottom-color: var(--pink); }

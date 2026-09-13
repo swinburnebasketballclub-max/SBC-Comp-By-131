@@ -1,5 +1,6 @@
 'use client'
 
+import Link from 'next/link'
 import { useEffect, useState, useTransition } from 'react'
 
 import { reviewColour, reviewPayment, type ReviewResult } from './review-actions'
@@ -48,6 +49,7 @@ type Props = {
   rows: Row[]
   canReviewPayments: boolean
   canReviewColours: boolean
+  canOpenRoster?: boolean
   locale: 'en' | 'zh'
   t: Record<string, string>
 }
@@ -62,7 +64,7 @@ const MESSAGES: Record<string, { en: string; zh: string }> = {
   FORBIDDEN:        { en: 'Your organiser role cannot do this.', zh: '你的 Admin 权限不能做这件事。' },
 }
 
-export function TeamTable({ rows, canReviewPayments, canReviewColours, locale, t }: Props) {
+export function TeamTable({ rows, canReviewPayments, canReviewColours, canOpenRoster = false, locale, t }: Props) {
   const [open, setOpen] = useState<null | { kind: 'payment' | 'colour'; id: string }>(null)
   const row = open ? rows.find((r) => r.id === open.id) ?? null : null
 
@@ -113,7 +115,11 @@ export function TeamTable({ rows, canReviewPayments, canReviewColours, locale, t
                   <td>
                     <span className="who">
                       <span className="crest" style={{ background: r.crest }}>{r.initials}</span>
-                      <b>{r.name}</b>
+                      {canOpenRoster ? (
+                        <Link href={`/admin/players?team=${r.id}`} className="team-link" title={t.openRoster}><b>{r.name}</b></Link>
+                      ) : (
+                        <b>{r.name}</b>
+                      )}
                     </span>
                   </td>
                   <td style={{ color: 'var(--text-2)' }}>

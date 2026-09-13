@@ -20,7 +20,7 @@ const T_KEYS = [
   'reviewPayment', 'reviewColour', 'entryFee', 'depositLabel', 'amountDue', 'reference', 'receipt',
   'openReceipt', 'noReceipt', 'refundAccount', 'notProvided', 'submittedAt', 'approve', 'returnIt',
   'returnReason', 'payApproveNote', 'nothingSubmitted', 'claimOrder', 'claimedAt', 'customColour',
-  'design', 'openDesign', 'noDesign', 'confirmColour', 'returnColour', 'colourReturnNote', 'close', 'working',
+  'design', 'openDesign', 'noDesign', 'confirmColour', 'returnColour', 'colourReturnNote', 'close', 'working', 'openRoster',
 ] as const satisfies readonly Key[]
 
 /** Private files are reachable only through a short-lived signed link. */
@@ -170,6 +170,7 @@ export default async function Overview() {
             rows={rows}
             canReviewPayments={canReviewPayments}
             canReviewColours={canReviewColours}
+            canOpenRoster={role === 'super'}
             locale={tr.locale}
             t={Object.fromEntries(T_KEYS.map((k) => [k, tr(k)]))}
           />
